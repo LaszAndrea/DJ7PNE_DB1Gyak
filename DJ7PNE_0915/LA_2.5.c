@@ -17,7 +17,7 @@ void sorok(){
 
     if(!fp){
         printf("Meg nem letezett a fajl ezert letrehoztam.");
-        fp =fopen("autok.bin", "wb");
+        fp =fopen("szemelyek.bin", "wb");
         fclose(fp);
         exit(0);
     }
