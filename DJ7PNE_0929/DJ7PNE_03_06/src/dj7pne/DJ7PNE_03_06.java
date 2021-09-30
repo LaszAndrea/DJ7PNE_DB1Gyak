@@ -9,6 +9,11 @@ public class DJ7PNE_03_06 implements Serializable {
 	public static void main(String[] args) {
 
 		hf4();
+		try {
+			visszaolvas();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -38,6 +43,61 @@ public class DJ7PNE_03_06 implements Serializable {
 			System.out.println("File nyitasi hiba");
 		}
 		System.out.println("OK");
+	}
+	
+	public static void visszaolvas() throws FileNotFoundException {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Hanyadik rekordot szeretne visszaolvasni? Eddig " + db + " adat van");
+		boolean ok = true;
+		int olvas = 0;
+		do {
+			try {
+				ok = true;
+				olvas = sc.nextInt();
+				if (olvas <= 0 || olvas > 10) {
+					System.out.println("nem jo szamot adott meg");
+					ok = false;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println(e);
+				ok = false;
+			}
+		} while (!ok);
+		
+		sc.close();
+		
+		int sor =1;
+		DJ7PNE_03_06 ma;
+		try {
+			File fn = new File("Autok.dat");
+			if (fn.exists()) {
+				ObjectInputStream kifile = new ObjectInputStream(new FileInputStream("Autok.dat"));
+				try {
+					while (true) {
+						ma = (DJ7PNE_03_06) kifile.readObject();
+						if (sor==olvas) {
+							System.out.println("rendszam=" + ma.rsz);
+							System.out.println("tipus=" + ma.tipus);
+							System.out.println("ar=" + ma.ar);
+						}
+						sor++;
+					}
+				} catch (EOFException ee) {
+					ma = null;
+				}
+				kifile.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("File nyitasi hiba");
+		}
+		System.out.println("OK2");
+		
+		sc.close();
+
+		
+		
 	}
 
 }
