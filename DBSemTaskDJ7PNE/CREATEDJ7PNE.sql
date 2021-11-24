@@ -1,0 +1,15 @@
+CREATE DATABASE DJ7PNE;
+USE DJ7PNE;
+CREATE TABLE Nyomtatógép(Termékneve VARCHAR(40) PRIMARY KEY, Típus VARCHAR(6) NOT NULL, Folyóméter INT NOT NULL check (Folyóméter>0), Festékfelhasználás INT check (Festékfelhasználás>0));
+CREATE TABLE Raszterhenger(Raszterhenger VARCHAR(10) NOT NULL, Gyártó VARCHAR(30), TermékneveRFK VARCHAR(40) REFERENCES Nyomtatógép);
+CREATE TABLE Tasakrendelés(tasakID INT PRIMARY KEY, Papírminőség VARCHAR(30), Mennyiség INT NOT NULL check (Mennyiség>0), Terméknév VARCHAR(50) NOT NULL);
+CREATE TABLE Vevő(Adószám INT PRIMARY KEY, Név VARCHAR(30) NOT NULL, Származás VARCHAR(20), Irányítószám INT NOT NULL, Utca VARCHAR(30));
+CREATE TABLE Szerződésszáma(Rendelésdátuma DATE NOT NULL, Szerződésszám INT NOT NULL, TermékneveSZFK VARCHAR(40) NOT NULL REFERENCES Nyomtatógép, tasakIDSZFK INT NOT NULL REFERENCES Tasakrendelés, AdószámSZFK INT NOT NULL REFERENCES Vevő);
+CREATE TABLE Festék(Pantonszám VARCHAR(8) PRIMARY KEY, Raktáronlévőmennyiség  INT, Lejáratidátum DATE);
+CREATE TABLE Gyártó(Gyártó VARCHAR(30) NOT NULL, PantonszámFK VARCHAR(8) REFERENCES Festék);
+CREATE TABLE Felhasználás(Felhasználás VARCHAR(30) NOT NULL, TermékneveFFK VARCHAR(40) NOT NULL REFERENCES Nyomtatógép, PantonszámFFK VARCHAR(8) NOT NULL REFERENCES Festék);
+CREATE TABLE Gyár(GyAdószám INT PRIMARY KEY, Alapításidátum DATE, gyNév VARCHAR(30) NOT NULL, Telephely VARCHAR(30));
+CREATE TABLE VGY(GyAdószámVGYFK INT REFERENCES Gyár, AdószámVGYFK INT REFERENCES Vevő);
+CREATE TABLE Tulajdonos(Tajszám VARCHAR(30) PRIMARY KEY, Név CHAR(30) NOT NULL, Születésidátum DATE, Szerződéskezdete DATE, GyAdószámTFK INT REFERENCES Gyár);
+CREATE TABLE Színek(Pantonszám VARCHAR(10) PRIMARY KEY);
+CREATE TABLE Logo(logoID INT NOT NULL check (logoID > 0), Elkészítésdátuma DATE, Tervező VARCHAR(30), GyAdószámLFK INT REFERENCES Gyár, PantonszámLFK VARCHAR(30) REFERENCES Színek);
