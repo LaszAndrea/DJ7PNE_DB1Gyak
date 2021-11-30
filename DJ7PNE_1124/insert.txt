@@ -1,0 +1,19 @@
+INSERT INTO CIM (2456,Debrecen,’József Attila út’,’24’);
+INSERT INTO CÍM (1276,”Miskolc”,’Honvéd utca’,”2”);
+INSERT INTO CÍM (5437,”Pécs”,’Kossuth út’,”53”);
+INSERT INTO CÍM (2017,’Szeged’,’ Patak utca’,”11”);
+INSERT INTO CÍM (4060,’Győr’,’ Péter utca’,’15’);
+INSERT INTO CÍM (5054,’Sopron’,’Tégla utca’,’37/A’);
+
+INSERT INTO HALLGATO (’D3U3EE’,18, ’Oravecz Áron’,’BI2’,’05.09.2000’,21);
+INSERT INTO HALLGATO (’DJ7PNE’,15, ’Laszló Andrea’,’BI1’,’17.11.2001’,20);
+INSERT INTO HALLGATO (’AJYKQ3’,12, ’Garamszegi Márton’,’BI3’,’11.02.2001’,20);
+
+INSERT INTO TARGY (12, ’AJYKQ3’,’SZK3’,6,’Hálózat’);
+INSERT INTO TARGY (15, ’DJ7PNE’,’SZK3’,5,’Analízis’);
+INSERT INTO TARGY (18, ’ D3U3EE’,’SZK3’,5,’Programozás’);
+
+INSERT INTO OKTATÓ (’SZK3’,12,’IIT’,’Kovács Szilveszter’);
+INSERT INTO OKTATÓ (’SZK3’,15,’IIT’, ’Kovács Szilveszter’);
+INSERT INTO OKTATÓ (’SZK3’,18,’IIT’, ’Kovács Szilveszter’);
+INERT INT OKTATÓ (’LK12’,NULL,’IIT’,’Kovács László’);
